@@ -1,0 +1,29 @@
+version: '2'
+services:
+  odoo:
+    image: odoo:16.0
+    depends_on:
+      - db
+    ports:
+      - "80:8069"
+    volumes:
+      - ./addons:/home/odoo/addons
+      - ${PWD}/odoo.conf:/etc/odoo/odoo.conf
+    networks:
+      - odoo_dev
+    stdin_open: true
+    tty: true
+ 
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+    ports:
+      - "5432:5432"
+    networks:
+      - odoo_dev
+
+networks:
+  odoo_dev:
