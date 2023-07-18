@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ODOO_VERSION=16.0
+ODOO_VERSION=14.0
 
 echo "Step 1: Create addons folders"
 mkdir addons
